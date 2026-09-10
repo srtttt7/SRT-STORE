@@ -1,16 +1,26 @@
 name: Build SRTSTORE
+
 on: [push, workflow_dispatch]
+
 jobs:
   build:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Setup Theos
-        run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+        run: |
+          git clone --recursive https://github.com/theos/theos.git ~/theos
+          
+      - name: Download SDK
+        run: |
+          git clone https://github.com/theos/sdks.git ~/theos/sdks
+          
       - name: Build Tweak
         run: |
           export THEOS=~/theos
           make package FINALPACKAGE=1
+          
       - name: Upload DEB
         uses: actions/upload-artifact@v4
         with:
