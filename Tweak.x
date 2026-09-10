@@ -10,7 +10,7 @@
                                                                 preferredStyle:UIAlertControllerStyleAlert];
 
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(105, 15, 60, 60)];
-        NSString *base64Image = @"iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA1JJREFUeNrs21Fok1UYACD/N3eubUvXmku2zC1m1IggKIoIGUUp4otBfRBEfRBEfRBE+hA+BPUhIn0QxBdBfRDEBy/6Iog+SIsgKCgy3Tbd3Oa2uf9u+3/veN3mttza5lsH5zvfe/fO/53vO9933ve9f2s4HAbm4Xw/P9I4/wA8xQ/4o/I24A00/SRY/I0";
+        NSString *base64Image = @"iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA1JJREFUeNrs21Fok1UYACD/N3eubUvXmku2zC1m1IggKIoIGUUp4otBfRBEfRBEfRBE+hA+BPUhIn0QxBdBfRDEBy/6Iog+SIsgKCgy3Tbd3Oa2uf9u+3/vEnZmttza5lsH5zvfe/fO/53vO9933ve9f2s4HAbm4Xw/P9I4/wA8xQ/4o/I24A00/SRY/I0";
         
         imageView.image = [UIImage imageWithData:[[NSData alloc] initWithBase64EncodedString:base64Image options:0]];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -42,8 +42,8 @@
         [alert addAction:developerAction];
         [alert addAction:closeAction];
 
-        UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
-        [rootVC presentViewController:alert animated:YES completion:nil];
+        UIWindow *window = [[[UIApplication sharedApplication] windows] firstObject];
+        [window.rootViewController presentViewController:alert animated:YES completion:nil];
     });
 }
 %end
