@@ -12,9 +12,13 @@ jobs:
         run: |
           git clone --recursive https://github.com/theos/theos.git ~/theos
           
-      - name: Download SDK
+      - name: Ensure SDK Exists
         run: |
-          git clone https://github.com/theos/sdks.git ~/theos/sdks
+          if [ ! -d "$HOME/theos/sdks" ]; then
+            git clone https://github.com/theos/sdks.git ~/theos/sdks
+          else
+            echo "SDKs already exist, skipping clone."
+          fi
           
       - name: Build Tweak
         run: |
