@@ -1,10 +1,29 @@
 #import <UIKit/UIKit.h>
 
 %hook UIApplication
-- (void)applicationDidFinishLaunching:(id)application {
-    %orig;
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    BOOL orig = %orig;
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIWindow *window = nil;
+        for (UIWindowScene *scene in [UIApplication sharedApplication].connectedScenes) {
+            if (scene.activationState == UISceneActivationStateForegroundActive) {
+                window = scene.windows.firstObject;
+                break;
+            }
+        }
+        
+        if (!window) {
+            window = [UIApplication sharedApplication].windows.firstObject;
+        }
+
+        UIViewController *rootVC = window.rootViewController;
+        if (!rootVC) return;
+
+        while (rootVC.presentedViewController) {
+            rootVC = rootVC.presentedViewController;
+        }
+
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\n\n\n\nWelcome to SRT STORE"
                                                                        message:@"Thank you for using our app! Select an option below to connect with us."
                                                                 preferredStyle:UIAlertControllerStyleAlert];
@@ -46,15 +65,9 @@
         [alert addAction:developerAction];
         [alert addAction:closeAction];
 
-        UIWindow *window = nil;
-        for (UIWindowScene *scene in [UIApplication sharedApplication].connectedScenes) {
-            if (scene.activationState == UISceneActivationStateForegroundActive) {
-                window = scene.windows.firstObject;
-                break;
-            }
-        }
-        UIViewController *rootVC = window.rootViewController;
         [rootVC presentViewController:alert animated:YES completion:nil];
     });
+
+    return orig;
 }
 %end
