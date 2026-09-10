@@ -18,7 +18,7 @@
         }
         
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.layer.cornerRadius = 27.5; // لجعل الصورة دائرية تماماً (نصف الـ 55)
+        imageView.layer.cornerRadius = 27.5;
         imageView.clipsToBounds = YES;
         [alert.view addSubview:imageView];
 
@@ -46,7 +46,14 @@
         [alert addAction:developerAction];
         [alert addAction:closeAction];
 
-        UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UIWindow *window = nil;
+        for (UIWindowScene *scene in [UIApplication sharedApplication].connectedScenes) {
+            if (scene.activationState == UISceneActivationStateForegroundActive) {
+                window = scene.windows.firstObject;
+                break;
+            }
+        }
+        UIViewController *rootVC = window.rootViewController;
         [rootVC presentViewController:alert animated:YES completion:nil];
     });
 }
