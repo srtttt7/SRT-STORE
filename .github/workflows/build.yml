@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Theos
         run: bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
       - name: Build Tweak
@@ -12,7 +12,7 @@ jobs:
           export THEOS=~/theos
           make package FINALPACKAGE=1
       - name: Upload DEB
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SRTSTORE-Package
           path: packages/*.deb
