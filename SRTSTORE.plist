@@ -1,7 +1,7 @@
 {
     Filter = {
-        Bundles = (
-            "com.apple.springboard",
-        );
+        Bundles = {
+            "nya.asami.ksign";
+        };
     };
 }
