@@ -8,11 +8,11 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\n\n\n\nWelcome to SRT STORE"
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\n\n\nWelcome to SRT STORE"
                                                                            message:@"Thank you for using our app! Select an option below to connect with us."
                                                                     preferredStyle:UIAlertControllerStyleAlert];
 
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(110, 15, 55, 55)];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(105, 12, 80, 80)];
             
             NSURL *imageUrl = [NSURL URLWithString:@"https://cdn.phototourl.com/free/2026-09-10-771919a2-7ccc-4d7d-b574-c770b5a21c2f.jpg"];
             NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
@@ -21,7 +21,7 @@
             }
             
             imageView.contentMode = UIViewContentModeScaleAspectFill;
-            imageView.layer.cornerRadius = 27.5;
+            imageView.layer.cornerRadius = 40;
             imageView.clipsToBounds = YES;
             [alert.view addSubview:imageView];
 
