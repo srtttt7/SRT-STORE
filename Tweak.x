@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 
-%interface SRTWebViewController : UIViewController
+@interface SRTWebViewController : UIViewController
 @end
 
 @implementation SRTWebViewController
@@ -70,7 +71,7 @@
         btn.layer.borderColor = [UIColor colorWithRed:0.55 green:0.2 blue:0.55 alpha:1.0].CGColor;
         
         if (data[@"url"]) {
-            [btnaddTarget:self action:@selector(openLink:) forControlEvents:UIControlEventTouchUpInside];
+            [btn addTarget:self action:@selector(openLink:) forControlEvents:UIControlEventTouchUpInside];
             objc_setAssociatedObject(btn, "targetURL", data[@"url"], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         } else {
             [btn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
