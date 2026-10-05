@@ -19,7 +19,7 @@
     [scrollView addSubview:contentView];
 
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 110) / 2, 40, 110, 110)];
-    NSURL *imageUrl = [NSURL URLWithString:@"https://cdn.phototourl.com/free/2026-09-10-771919a2-7ccc-4d7d-b574-c770b5a21c2f.jpg"];
+    NSURL *imageUrl = [NSURL URLWithString:@"https://imagetourls.com/ar/v?u=https%3A%2F%2Fcdn.imagetourls.com%2Fuploads%2FtyImg%2FhLkXfB98.jpg"];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     if (imageData) {
         imageView.image = [UIImage imageWithData:imageData];
@@ -53,7 +53,7 @@
 
     NSArray *buttonsData = @[
         @{@"title": @"قناة التليجرام | Telegram Channel", @"url": @"https://t.me/srt_ipa7"},
-        @{@"title": @"مجموعة النقاشات | Discussion Group", @"url": @"https://t.me/srt_ipa7"},
+        @{@"title": @"مجموعة المنقاشات | Discussion Group", @"url": @"https://t.me/srt_ipa7"},
         @{@"title": @"حساب المطور | Developer Account", @"url": @"https://t.me/evv2g"},
         @{@"title": @"إغلاق | Close", @"action": @"close"}
     ];
